@@ -1,5 +1,8 @@
-libgfx.a
+*.a
 celeste.lua
-game.elf
-game.gba
-game.sav
+run_away_game.elf
+run_away_game.gba
+run_away_game.gif
+run_away_game.sav
+.vscode/*.log
+build/*
