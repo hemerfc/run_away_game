@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "tonc.h": "c",
+        "tonc_types.h": "c",
+        "metr.h": "c",
+        "player.h": "c",
+        "global.h": "c",
+        "random": "c",
+        "stdlib.h": "c",
+        "all_gfx.h": "c"
+    }
+}

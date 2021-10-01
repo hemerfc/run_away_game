@@ -1,0 +1,5 @@
+#
+# char.png : 4bpp tiles, with palette
+#
+
+-gt -gB4 -pn 32 -U32
