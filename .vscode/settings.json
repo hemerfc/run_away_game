@@ -8,6 +8,9 @@
         "global.h": "c",
         "random": "c",
         "stdlib.h": "c",
-        "all_gfx.h": "c"
+        "all_gfx.h": "c",
+        "node.h": "c",
+        "node_player.h": "c",
+        "node_list.h": "c"
     }
 }

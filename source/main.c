@@ -12,37 +12,31 @@
 #include <tonc.h>
 #include "all_gfx.h"
 #include "global.h"
-#include "home.h"
-#include "room.h"
+#include "rooms/room.h"
+
+GAME_STATE game_state;
 
 int main()
 {
-	u16 currentStage = 1;
-	u16 result;
-
 	srand(time(NULL));
+
+	game_state.current_room = ROOM_HOME;
 
 	do
 	{
-		switch (currentStage)
+		switch (game_state.current_room)
 		{
-			case ST_MAIN_HOME:
-				result = home_run();
-				if (result == 1)
-					currentStage = ST_MAIN_PLAYING;
+			case ROOM_HOME: 
+				room_home_create(&game_state);
 			break;		
-			case ST_MAIN_PLAYING:
-				result = room_run();
-				if (result == 1)
-					currentStage = ST_MAIN_HOME;
+			case ROOM_MAIN:
+				room_main_create(&game_state);
 			break;
-			case ST_MAIN_GAMEOVER:
-			break;		
-			default:
-				break;
 		}
+		
+		room_update(&game_state);
 	}
-	while(currentStage > 0);
+	while(game_state.current_room > 0);
 
 	return 0;
 }
