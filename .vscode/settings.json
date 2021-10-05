@@ -11,6 +11,9 @@
         "all_gfx.h": "c",
         "node.h": "c",
         "node_player.h": "c",
-        "node_list.h": "c"
+        "node_list.h": "c",
+        "node_home_room.h": "c",
+        "room.h": "c",
+        "node_ball.h": "c"
     }
 }

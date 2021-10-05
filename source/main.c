@@ -14,24 +14,29 @@
 #include "global.h"
 #include "rooms/room.h"
 
-GAME_STATE game_state;
-
 int main()
 {
 	srand(time(NULL));
 
 	game_state.current_room = ROOM_HOME;
+	ROOMS previous_room;
 
 	do
 	{
-		switch (game_state.current_room)
+		if(previous_room != game_state.current_room)
 		{
-			case ROOM_HOME: 
-				room_home_create(&game_state);
-			break;		
-			case ROOM_MAIN:
-				room_main_create(&game_state);
-			break;
+			room_finish(&game_state);
+
+			switch (game_state.current_room)
+			{
+				case ROOM_HOME: 
+					room_home_create(&game_state);
+				break;		
+				case ROOM_MAIN:
+					room_main_create(&game_state);
+				break;
+			}
+			previous_room = game_state.current_room;
 		}
 		
 		room_update(&game_state);

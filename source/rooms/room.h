@@ -15,8 +15,8 @@
 
 typedef enum ROOMS
 {
-    ROOM_HOME,
-    ROOM_MAIN
+    ROOM_HOME = 1,
+    ROOM_MAIN = 2
 } ROOMS;
 
 typedef struct game_state 
@@ -29,8 +29,9 @@ extern void room_home_create(GAME_STATE *game_state);
 extern void room_main_create(GAME_STATE *game_state);
 
 extern void room_update(GAME_STATE *game_state);
+extern void room_finish(GAME_STATE *game_state);
 
-extern void game_state_set_room();
+extern void game_state_set_room(GAME_STATE *game_state, ROOMS room);
 
 #endif // ROOM_H
 

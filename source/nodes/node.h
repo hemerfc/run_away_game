@@ -10,11 +10,6 @@
 #define NODE_H
 
 #include <tonc.h>
-#include "../global.h"
-
-#define NTYPE_DELETE 0
-#define NTYPE_PLAYER 1
-#define NTYPE_BALL 2
 
 typedef struct node {
 	u16 id;
@@ -24,12 +19,12 @@ typedef struct node {
 	// POSITION
 	u16 pos_x;
 	u16 pos_y;
+	
 	// SPEED
 	s16 spd_x;
 	s16 spd_y;
+
 	// HITBOX
-	u16 hitbox_x;
-	u16 hitbox_y;
 	u16 hitbox_w;
 	u16 hitbox_h;
 	bool enabled;

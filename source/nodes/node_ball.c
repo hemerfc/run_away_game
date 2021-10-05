@@ -1,4 +1,3 @@
-//
 //! \file node_ball.c
 //!   ball module
 //! \date 20211003
@@ -29,8 +28,6 @@ u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx)
 	node->pos_y = pos_y;
 	node->spd_x = 2;
 	node->spd_y = 2;
-	node->hitbox_x = pos_x;
-	node->hitbox_y = pos_y;
 	node->hitbox_w = 32;
 	node->hitbox_h = 32;
 	node->enabled = true;
@@ -46,7 +43,7 @@ u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx)
 	return idx;
 }
 
-void node_ball_update(NODE *node) 
+void node_ball_update(NODE_LIST *node_list, NODE *node) 
 {
 	//240 × 160
 	if(node->pos_x + node->hitbox_w >= 240 || node->pos_x <= 0)

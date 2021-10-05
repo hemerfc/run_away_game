@@ -11,6 +11,7 @@
 #include "node.h"
 #include "node_ball.h"
 #include "node_player.h"
+#include "node_home_room.h"
 
 void node_list_init(NODE_LIST *node_list)
 {
@@ -37,10 +38,13 @@ void node_list_update(NODE_LIST *node_list)
 			switch (node->type)
 			{
 			case NTYPE_BALL:
-				node_ball_update(node);
+				node_ball_update(node_list, node);
 				break;
 			case NTYPE_PLAYER:
-				node_player_update(node);
+				node_player_update(node_list, node);
+				break;	
+			case NTYPE_HOME_ROOM:
+				node_home_room_update(node_list, node);
 				break;			
 			}
 		}
@@ -63,6 +67,9 @@ void node_list_draw(NODE_LIST *node_list)
 			case NTYPE_PLAYER:
 				node_player_draw(node);
 				break;			
+			case NTYPE_HOME_ROOM:
+				node_home_room_draw(node);
+				break;
 			}
 		}
 	}

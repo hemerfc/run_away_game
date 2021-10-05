@@ -12,6 +12,7 @@
 #include "../nodes/node.h"
 #include "../nodes/node_ball.h"
 #include "../nodes/node_player.h"
+#include "../nodes/node_home_room.h"
 #include "all_gfx.h"
 
 #include "../nodes/node.h"
@@ -52,6 +53,7 @@ void room_home_create(GAME_STATE *game_state)
 	node_ball_create(&game_state->node_list, 1, 1, ballTilesIdx);
 	node_ball_create(&game_state->node_list, 50, 200, ballTilesIdx);
 	node_ball_create(&game_state->node_list, 200, 30, ballTilesIdx);
+	node_home_room_create(&game_state->node_list);
 }
 
 void room_main_create(GAME_STATE *game_state)
@@ -69,7 +71,7 @@ void room_main_create(GAME_STATE *game_state)
 	node_list_init(&game_state->node_list);
 	node_player_create(&game_state->node_list, 96, 32, charTilesIdx);
 	node_ball_create(&game_state->node_list, 10, 10, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 150, 100, ballTilesIdx);
+	node_ball_create(&game_state->node_list, 100, 100, ballTilesIdx);
 }
 
 void room_finish(GAME_STATE *game_state)
@@ -79,29 +81,20 @@ void room_finish(GAME_STATE *game_state)
 
 void room_update(GAME_STATE *game_state)
 {
-	u16 result = 0;
+	key_poll();
+
+	node_list_update(&game_state->node_list);
 	
-	while(result == 0)
-	{
-		key_poll();
+	// start frame drawing
+	vid_vsync();
 
-		node_list_update(&game_state->node_list);
-		
-		// go to next stage
-		if(key_hit(KEY_A))
-			result = 1;
+	tte_erase_screen();
+	node_list_draw(&game_state->node_list);
+	
+	oam_copy(oam_mem, obj_buffer, 3); // TODO: oam count deve ser calculado
+}
 
-		// start frame drawing
-		vid_vsync();
-
-		//tte_erase_screen();
-		//tte_set_pos(0, 0);
-		//tte_write("stage01 screen!");
-
-		node_list_draw(&game_state->node_list);
-		
-		oam_copy(oam_mem, obj_buffer, 3); // TODO: oam count deve ser calculado
-	}
-
-	room_finish(game_state);
+void game_state_set_room(GAME_STATE *game_state, ROOMS room)
+{
+	game_state->current_room = room;
 }

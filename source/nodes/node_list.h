@@ -10,13 +10,13 @@
 #define NODE_LIST_H
 
 #include <tonc.h>
-#include "../global.h"
 #include "node.h"
 
 #define NODE_LIST_LEN 128
 #define NTYPE_DELETE 0
 #define NTYPE_PLAYER 1
 #define NTYPE_BALL 2
+#define NTYPE_HOME_ROOM 3
 
 typedef struct node_list {    
 	NODE nodes[NODE_LIST_LEN];

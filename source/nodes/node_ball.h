@@ -14,7 +14,7 @@
 #include "node_list.h"
 
 extern u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx);
-extern void node_ball_update(NODE *node);
+extern void node_ball_update(NODE_LIST *node_list, NODE *node);
 extern void node_ball_draw(NODE *node);
 
 #endif // NODE_BALL_H
