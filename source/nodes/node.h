@@ -5,36 +5,44 @@
 //! \author Hemerson F. Camargo
 //
 // === NOTES ===
-
-#ifndef NODE_H
-#define NODE_H
+#pragma once
 
 #include <tonc.h>
+
+typedef struct node NODE;
+
+typedef struct node_list NODE_LIST;
+typedef void (*fn_node_update) (NODE *node);
+typedef void (*fn_node_draw) (NODE *node);
 
 typedef struct node {
 	u16 id;
 	u16 type;    
 	bool collidable; 
-	
+	NODE_LIST *node_list;
+
 	// POSITION
-	u16 pos_x;
-	u16 pos_y;
+	s16 pos_x;
+	s16 pos_y;
 	
 	// SPEED
 	s16 spd_x;
 	s16 spd_y;
 
 	// HITBOX
-	u16 hitbox_w;
-	u16 hitbox_h;
+	s16 hitbox_offset_x;
+	s16 hitbox_offset_y;
+	s16 hitbox_w;
+	s16 hitbox_h;
 	bool enabled;
-	void* node_data;
 
 	// OBJ DATA 
 	u16 tile_idx;
 	u32 obj_buffer_id;
 	OBJ_ATTR *obj;
-} NODE;
 
-#endif // NODE_H
+	// functions
+	fn_node_update update;
+	fn_node_draw draw;
+} NODE;
 

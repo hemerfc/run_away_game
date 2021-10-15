@@ -12,7 +12,7 @@
                 "/opt/devkitPro/libtonc/include"
             ],
             "defines": [],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "gcc-arm64",
             "browse": {
                 "path": [
                     "/usr/include",
@@ -39,7 +39,7 @@
                 "${workspaceFolder}/include"
             ],
             "defines": [],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "gcc-arm64",
             "browse": {
                 "path": [
                     "/usr/include",
@@ -67,7 +67,7 @@
                 "ARM7",
                 "WIN32"
             ],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "gcc-arm64",
             "browse": {
                 "path": [
                     "${workspaceFolder}",

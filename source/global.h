@@ -16,9 +16,8 @@ extern GAME_STATE game_state;
 extern OBJ_ATTR obj_buffer[128];
 extern OBJ_AFFINE *obj_aff_buffer;
 
-#define ST_MAIN_HOME 1
-#define ST_MAIN_PLAYING 2
-#define ST_MAIN_GAMEOVER 3
+#define FRAME_WIDTH 240
+#define FRAME_HEIGHT 160
 
 #endif // GLOBALS_H
 

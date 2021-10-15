@@ -16,7 +16,8 @@
 #define NTYPE_DELETE 0
 #define NTYPE_PLAYER 1
 #define NTYPE_BALL 2
-#define NTYPE_HOME_ROOM 3
+#define NTYPE_ROOM_HOME 3
+#define NTYPE_ROOM_GAMEOVER 4
 
 typedef struct node_list {    
 	NODE nodes[NODE_LIST_LEN];

@@ -11,7 +11,8 @@
 #include "node.h"
 #include "node_ball.h"
 #include "node_player.h"
-#include "node_home_room.h"
+#include "node_room_home.h"
+#include "node_room_gameover.h"
 
 void node_list_init(NODE_LIST *node_list)
 {
@@ -20,6 +21,9 @@ void node_list_init(NODE_LIST *node_list)
 		NODE *node = &node_list->nodes[i];
 		node->id = 0;
 		node->type = NTYPE_DELETE;
+		node->enabled = FALSE;
+		node->update = NULL;
+		node->draw = NULL;
 	}
 }
 
@@ -35,6 +39,9 @@ void node_list_update(NODE_LIST *node_list)
 
 		if(node->enabled)
 		{
+			if(node->update != NULL)
+				node->update(node);
+			/*
 			switch (node->type)
 			{
 			case NTYPE_BALL:
@@ -43,10 +50,13 @@ void node_list_update(NODE_LIST *node_list)
 			case NTYPE_PLAYER:
 				node_player_update(node_list, node);
 				break;	
-			case NTYPE_HOME_ROOM:
-				node_home_room_update(node_list, node);
+			case NTYPE_ROOM_HOME:
+				node_room_home_update(node_list, node);
+				break;		
+			case NTYPE_ROOM_GAMEOVER:
+				node_room_gameover_update(node_list, node);
 				break;			
-			}
+			}*/
 		}
 	}
 }
@@ -59,7 +69,10 @@ void node_list_draw(NODE_LIST *node_list)
 
 		if(node->enabled)
 		{
-			switch (node->type)
+			if(node->draw != NULL)
+				node->draw(node);
+
+			/*switch (node->type)
 			{
 			case NTYPE_BALL:
 				node_ball_draw(node);
@@ -67,10 +80,13 @@ void node_list_draw(NODE_LIST *node_list)
 			case NTYPE_PLAYER:
 				node_player_draw(node);
 				break;			
-			case NTYPE_HOME_ROOM:
-				node_home_room_draw(node);
+			case NTYPE_ROOM_HOME:
+				node_room_home_draw(node);
 				break;
-			}
+			case NTYPE_ROOM_GAMEOVER:
+				node_room_gameover_draw(node);
+				break;
+			}*/
 		}
 	}
 }

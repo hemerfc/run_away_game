@@ -6,13 +6,15 @@
 //
 // === NOTES ===
 
+#include <stdlib.h>
 #include <tonc.h>
 #include "room.h"
 #include "../global.h"
 #include "../nodes/node.h"
 #include "../nodes/node_ball.h"
 #include "../nodes/node_player.h"
-#include "../nodes/node_home_room.h"
+#include "../nodes/node_room_home.h"
+#include "../nodes/node_room_gameover.h"
 #include "all_gfx.h"
 
 #include "../nodes/node.h"
@@ -29,7 +31,7 @@ void room_basic_create(GAME_STATE *game_state)
 		0,						// Background number (0-3)
 		BG_CBB(0)|BG_SBB(31),	// BG control
 		0,						// Tile offset (special cattr)
-		CLR_YELLOW,				// Ink color
+		CLR_RED,				// Ink color
 		14,						// BitUnpack offset (on-pixel = 15)
 		NULL,					// Default font (sys8) 
 		NULL);					// Default renderer (se_drawg_s)
@@ -48,12 +50,20 @@ void room_home_create(GAME_STATE *game_state)
 	memcpy32(pal_obj_mem, ballPal, ballPalLen);
 
 	node_list_init(&game_state->node_list);
-	node_ball_create(&game_state->node_list, 10, 10, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 150, 100, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 1, 1, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 50, 200, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 200, 30, ballTilesIdx);
-	node_home_room_create(&game_state->node_list);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_room_home_create(&game_state->node_list);
+}
+
+void room_gameover_create(GAME_STATE *game_state)
+{
+	room_basic_create(game_state);
+
+	node_list_init(&game_state->node_list);
+	node_room_gameover_create(&game_state->node_list);
 }
 
 void room_main_create(GAME_STATE *game_state)
@@ -69,9 +79,11 @@ void room_main_create(GAME_STATE *game_state)
 	memcpy32(pal_obj_mem, ballPal, ballPalLen);
 
 	node_list_init(&game_state->node_list);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+	node_ball_create(&game_state->node_list, ballTilesIdx);
+
+	/* TODO: CHECK IF PLAYER IS COLLIDING WITH THIS BALLS BEFORE START */
 	node_player_create(&game_state->node_list, 96, 32, charTilesIdx);
-	node_ball_create(&game_state->node_list, 10, 10, ballTilesIdx);
-	node_ball_create(&game_state->node_list, 100, 100, ballTilesIdx);
 }
 
 void room_finish(GAME_STATE *game_state)

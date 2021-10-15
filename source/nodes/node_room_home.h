@@ -6,14 +6,14 @@
 //
 // === NOTES ===
 
-#ifndef NODE_BALL_H
-#define NODE_BALL_H
+#ifndef NODE_ROOM_HOME_BALL_H
+#define NODE_ROOM_HOME_BALL_H
 
 #include <tonc.h>
 #include "../global.h"
 #include "node_list.h"
 
-extern u16 node_ball_create(NODE_LIST *node_list, u16 tile_idx);
+u16 node_room_home_create(NODE_LIST *node_list);
 
-#endif // NODE_BALL_H
+#endif // NODE_ROOM_HOME_BALL_H
 

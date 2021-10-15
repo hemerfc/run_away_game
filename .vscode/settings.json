@@ -14,6 +14,9 @@
         "node_list.h": "c",
         "node_home_room.h": "c",
         "room.h": "c",
-        "node_ball.h": "c"
-    }
+        "node_ball.h": "c",
+        "node_room_gameover.h": "c",
+        "node_room_home.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

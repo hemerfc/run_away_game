@@ -16,10 +16,10 @@
 
 int main()
 {
-	srand(time(NULL));
+ 	srand(time(NULL));
 
 	game_state.current_room = ROOM_HOME;
-	ROOMS previous_room;
+	ROOMS previous_room = 0;
 
 	do
 	{
@@ -34,6 +34,9 @@ int main()
 				break;		
 				case ROOM_MAIN:
 					room_main_create(&game_state);
+				break;
+				case ROOM_GAMEOVER:
+					room_gameover_create(&game_state);
 				break;
 			}
 			previous_room = game_state.current_room;

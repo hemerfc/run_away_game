@@ -11,8 +11,43 @@
 #include "node_list.h"
 #include "node_ball.h"
 
-u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx) 
+// functions
+void ball_update_func(NODE *node) 
 {
+	//240 × 160
+	if(node->pos_x + node->hitbox_offset_x + node->hitbox_w >= FRAME_WIDTH || node->pos_x + node->hitbox_offset_x <= 0)
+		node->spd_x *= -1;
+	if(node->pos_y + node->hitbox_offset_y + node->hitbox_h >= FRAME_HEIGHT || node->pos_y + node->hitbox_offset_y <= 0)
+		node->spd_y *= -1; 
+
+	// move left/right
+	node->pos_x += node->spd_x;
+
+	// move up/down
+	node->pos_y += node->spd_y;
+	
+	obj_set_pos(node->obj, node->pos_x, node->pos_y);
+}
+
+// functions
+void ball_draw_func(NODE *node) 
+{
+	obj_set_pos(node->obj, node->pos_x, node->pos_y);
+}
+
+u16 node_ball_create(NODE_LIST *node_list, u16 tile_idx) 
+{
+	u16 pos_x, pos_y;
+	s16 spd_x, spd_y;
+
+	/* generate a random position */
+	pos_x = rand() % (FRAME_WIDTH - 32);
+	pos_y = rand() % (FRAME_HEIGHT - 32);	
+	
+	/* generate a random direction speed */
+	spd_x = (rand() & 1)?2:-2;
+	spd_y = (rand() & 1)?2:-2;
+
 	u16 idx = node_list_get_empty(node_list);
 
 	// if don`t have any node avaiable
@@ -26,13 +61,14 @@ u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx)
 	node->collidable = true;
 	node->pos_x = pos_x;
 	node->pos_y = pos_y;
-	node->spd_x = 2;
-	node->spd_y = 2;
+	node->spd_x = spd_x;
+	node->spd_y = spd_y;
 	node->hitbox_w = 32;
 	node->hitbox_h = 32;
 	node->enabled = true;
 	node->obj = &obj_buffer[idx];
-	
+	node->node_list = node_list;
+
 	obj_set_attr(node->obj, 
 		ATTR0_SQUARE,					// Square, regular sprite
 		ATTR1_SIZE_32x32,					// 8x8px, 
@@ -40,27 +76,8 @@ u16 node_ball_create(NODE_LIST *node_list, u16 pos_x, u16 pos_y, u16 tile_idx)
 
 	obj_set_pos(node->obj, node->pos_x, node->pos_y);
 
+	node->update = &ball_update_func;
+	node->draw = &ball_draw_func;
+
 	return idx;
-}
-
-void node_ball_update(NODE_LIST *node_list, NODE *node) 
-{
-	//240 × 160
-	if(node->pos_x + node->hitbox_w >= 240 || node->pos_x <= 0)
-		node->spd_x *= -1; 
-	if(node->pos_y + node->hitbox_h >= 160 || node->pos_y <= 0)
-		node->spd_y *= -1; 
-
-	// move left/right
-	node->pos_x += node->spd_x;
-
-	// move up/down
-	node->pos_y += node->spd_y;
-	
-	obj_set_pos(node->obj, node->pos_x, node->pos_y);
-}
-
-void node_ball_draw(NODE *node) 
-{	
-	obj_set_pos(node->obj, node->pos_x, node->pos_y);
 }
