@@ -29,8 +29,8 @@ TARGET		:= $(notdir $(CURDIR))
 BUILD		:= build
 SOURCES		:= source source/nodes source/rooms
 INCLUDES	:= include
-DATA		:=
-MUSIC		:=
+DATA		:= 
+MUSIC		:= audio
 GFXLIBS		:= libgfx.a
 
 #---------------------------------------------------------------------------------
