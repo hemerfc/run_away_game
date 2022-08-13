@@ -1,0 +1,5 @@
+#
+# spritesheet.png : 4bpp tiles, with palette
+# -mRtpf
+
+-gt -gB4 -mRtpf

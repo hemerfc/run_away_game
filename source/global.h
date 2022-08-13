@@ -1,23 +1,19 @@
 //
 //! \file globals.h
 //!   Global variables
-//! \date 20210928
+//! \date 20220729
 //! \author Hemerson F. Camargo
 //
-// === NOTES ===
+// === NOTES === 
 
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#pragma once
 
 #include <tonc.h>
-#include "rooms/room.h"
 
-extern GAME_STATE game_state;
-extern OBJ_ATTR obj_buffer[128];
-extern OBJ_AFFINE *obj_aff_buffer;
+#define BALL_SPRITE_ID 1
+#define CHAR_SPRITE_ID 2
 
 #define FRAME_WIDTH 240
 #define FRAME_HEIGHT 160
 
-#endif // GLOBALS_H
 

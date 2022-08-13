@@ -12,7 +12,7 @@
             "postDebugTask": "stop emulation",
             "serverLaunchTimeout": 10000,
             "stopAtEntry": true,
-            "program": "${workspaceFolder}/${workspaceFolderBasename}.elf",
+            "program": "${workspaceFolder}/bin/${workspaceFolderBasename}.elf",
             "MIMode": "gdb",
             "externalConsole": true,
             "cwd": "${workspaceFolder}",
@@ -24,7 +24,7 @@
                     {
                     "description": "Enable pretty-printing for gdb",
                     "ignoreFailures": true,
-                        "text": "file ${workspaceFolder}/${workspaceFolderBasename}.elf -enable-pretty-printing"
+                        "text": "file ${workspaceFolder}/bin/${workspaceFolderBasename}.elf -enable-pretty-printing"
                     }]
             },
             "osx":{
@@ -33,7 +33,7 @@
                     {
                     "description": "Enable pretty-printing for gdb",
                     "ignoreFailures": true,
-                        "text": "file ${workspaceFolder}/${workspaceFolderBasename}.elf -enable-pretty-printing"
+                        "text": "file ${workspaceFolder}/bin/${workspaceFolderBasename}.elf -enable-pretty-printing"
                     }]
             },
         }

@@ -39,11 +39,11 @@
             "dependsOn": ["make debug"],
             "isBackground": false,
             "windows": {
-                "command": "C:/hemerson/Projetos/games/gba/mGBA/mGBA.exe -g \"${workspaceFolder}/${workspaceFolderBasename}.gba\";sleep 5;echo debuggerReady"
+                "command": "mGBA.exe -g \"${workspaceFolder}/bin/${workspaceFolderBasename}.gba\";sleep 1;echo debuggerReady"
             },
             "osx":{
-                "command": "/Users/jamies/mGBA/mGBA.app/Contents/MacOS/mGBA",
-                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
+                "command": "mGBA",
+                "args": ["-g", "${workspaceFolder}/bin/${workspaceFolderBasename}.gba"]
             },
             "presentation": {
                 "clear": true,
@@ -63,7 +63,7 @@
             "label": "run",
             "type": "shell",
             "isBackground": true,
-            "command": "C:/hemerson/Projetos/games/gba/mGBA/mGBA.exe -g \"${workspaceFolder}/${workspaceFolderBasename}.gba\"",
+            "command": "mGBA.exe -g \"${workspaceFolder}/bin/${workspaceFolderBasename}.gba\"",
             "problemMatcher": []
         }
     ]
